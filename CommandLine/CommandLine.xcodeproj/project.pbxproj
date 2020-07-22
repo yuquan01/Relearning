@@ -23,8 +23,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3E333C1524C87FA100A0DBCF /* infos.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = infos.c; sourceTree = "<group>"; };
 		3E97DEA424C8426E00E369B1 /* CommandLine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CommandLine; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E97DEA724C8426E00E369B1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3E97DED024C847AF00E369B1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,8 @@
 		3E97DEA624C8426E00E369B1 /* CommandLine */ = {
 			isa = PBXGroup;
 			children = (
+				3E97DED024C847AF00E369B1 /* main.cpp */,
+				3E333C1524C87FA100A0DBCF /* infos.c */,
 				3E97DEA724C8426E00E369B1 /* main.m */,
 			);
 			path = CommandLine;
@@ -72,6 +76,7 @@
 				3E97DEA024C8426E00E369B1 /* Sources */,
 				3E97DEA124C8426E00E369B1 /* Frameworks */,
 				3E97DEA224C8426E00E369B1 /* CopyFiles */,
+				3E97DED524C8490800E369B1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -112,6 +117,26 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3E97DED524C8490800E369B1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "$(SRCROOT)/ocToCpp.sh\necho \"hello\"\necho $(SRCROOT)\necho \"hello\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3E97DEA024C8426E00E369B1 /* Sources */ = {
