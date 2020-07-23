@@ -32620,9 +32620,24 @@ struct NSUUID_IMPL {
 
 
 
+#ifndef _REWRITER_typedef_YQ_Object
+#define _REWRITER_typedef_YQ_Object
+typedef struct objc_object YQ_Object;
+typedef struct {} _objc_exc_YQ_Object;
+#endif
+
+struct YQ_Object_IMPL {
+	struct NSObject_IMPL NSObject_IVARS;
+};
+
+    // @property (nonatomic,assign) int weight;
+    // @property (nonatomic,copy) NSString *nickName;
+    // @property (nonatomic,strong) NSMutableString *addr;
+/* @end */
+
+
 int main(int argc, const char * argv[]) {
     /* @autoreleasepool */ { __AtAutoreleasePool __autoreleasepool; 
-        NSObject *obj = ((NSObject *(*)(id, SEL))(void *)objc_msgSend)((id)((NSObject *(*)(id, SEL))(void *)objc_msgSend)((id)objc_getClass("NSObject"), sel_registerName("alloc")), sel_registerName("init"));
 
     }
     return 0;
