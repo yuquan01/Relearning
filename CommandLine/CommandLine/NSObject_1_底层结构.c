@@ -57,6 +57,15 @@ struct YQ_Object_IMPL {
     NSMutableString *info;
 };
 
+#pragma mark  ------------------------总结
+/*
+ 1、在OC中,几乎所有的类都是继承自NSObject
+ 2、在底层中,NSObject实际上是一个objc_class结构体,其中,objc_class结构体继承自objc_object结构体
+ 3、objc_object结构体内部只有一个isa_t类型的isa成员
+ 4、objc_class结构体中有三个成员,分别是superclass、cache、bits,当然,还包括一个继承得来的isa成员
+ 5、自定义类的中成员变量都会在编译之后添加到对应的类结构体中
+ */
+
 
 
 

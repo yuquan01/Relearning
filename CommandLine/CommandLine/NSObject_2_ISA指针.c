@@ -5,18 +5,6 @@
 //isa_t的定义如下代码所示,其类型是一个union联合体,其内部有两个成员
 //cls : Class类型,即objc_class指针类型
 //bits : uintptr_t类型,即unsigned long类型,长度为8个字节
-
-/*
- union联合体的定义 :
- 联合体表示的是所有成员共用一块内存,这块内存同时间只能表示其中一个成员的值
- */
-/*
- struct与union联合体的共同点和区别
- 共同点 : 都可以包含基本数据类型,如int、char等
- 不同点 : 1、struct成员在内部有自己的内存空间,一个struct的大小为成员大小之和的总值经过内存对齐之后的大小,在ios中总是16的倍数,同时也会是结构体中最长的那个成员的倍数
- 但是union中的成员在内部是共享一个内存空间的,其长度总是等于最长的那个成员的长度
- 2、对struct成员进行赋值,并不会对其他成员造成影响,但是对union中的成员进行赋值,会影响到其他成员,因为union是内存覆盖,同时间只能表示一个成员的值.
- */
 typedef unsigned long           uintptr_t;
 
 union isa_t {
@@ -39,10 +27,6 @@ union isa_t {
 //其类型为unsigned long,长度为8个字节,即64位,而表示一个地址不需要用到这么大的空间,为了充分使用这块内存空间,使用了位域的形式来存储数据
 //其具体的表示如下
 //需要说明的是,在不同的架构平台上,位域的占用大小、位置也是也是有一定差异性的,以下是在arm64平台下的定义
-
-/*
- 位域 : 指定数据所占用的内存大小,一块内存空间可能不会被完全使用,而有些数据只需要小部分空间就可以表示,因此使用位域的形式来减少内存空间开销
- */
 # if __arm64__
 //一些辅助数据的定义
 #   define ISA_MASK        0x0000000ffffffff8ULL
@@ -100,75 +84,32 @@ uintptr_t extra_rc          : 19
  在64为机器中,其能存储的最大长度为 2^19 - 1 + 1的大小
  */
 
-#pragma mark  ------------------------isa的作用
-
-#pragma mark  ------------------------isa的创建
-
-
+#pragma mark  ------------------------补充union联合体的定义
 /*
- 创建一个类对象isa
- cls : 类对象
- hasCxxDtor : 是否有c++析构器
+ union联合体的定义 :
+ 联合体表示的是所有成员共用一块内存,这块内存同时间只能表示其中一个成员的值
  */
-objc_object::initInstanceIsa(Class cls, bool hasCxxDtor)
-{
-    ASSERT(!cls->instancesRequireRawIsa());
-    ASSERT(hasCxxDtor == cls->hasCxxDtor());
-    
-    initIsa(cls, true, hasCxxDtor);
-}
+#pragma mark  ------------------------struct与union联合体的共同点和区别
 /*
- 创建一个元类对象isa
- cls : 元类对象
+ struct与union联合体的共同点和区别
+ 共同点 : 都可以包含基本数据类型,如int、char等
+ 不同点 : 1、struct成员在内部有自己的内存空间,一个struct的大小为成员大小之和的总值经过内存对齐之后的大小,在ios中总是16的倍数,同时也会是结构体中最长的那个成员的倍数
+ 但是union中的成员在内部是共享一个内存空间的,其长度总是等于最长的那个成员的长度
+ 2、对struct成员进行赋值,并不会对其他成员造成影响,但是对union中的成员进行赋值,会影响到其他成员,因为union是内存覆盖,同时间只能表示一个成员的值.
  */
-objc_object::initClassIsa(Class cls)
-{
-    if (DisableNonpointerIsa  ||  cls->instancesRequireRawIsa()) {
-        initIsa(cls, false/*not nonpointer*/, false);
-    } else {
-        initIsa(cls, true/*nonpointer*/, false);
-    }
-}
+#pragma mark  ------------------------位域
+/*
+ 位域 : 指定数据所占用的内存大小,一块内存空间可能不会被完全使用,而有些数据只需要小部分空间就可以表示,因此使用位域的形式来减少内存空间开销
+ */
+#pragma mark  ------------------------总结
+/*
+ 1、isa出现在objc_object结构体中,从之前的分析可以知道,所有的类都存在一个isa成员
+ 2、isa实际上是一个isa_t的类型数据,本质上是一个unsigned long类型,其长度为8字节
+ 3、isa_t类型是一个联合体,其内部有2个成员,分别是cls、bits
+ 4、cls是class类型,指向一个objc_class类型数据,即指向一个对象
+ 5、bits使用位域存储数据,在不同的空间内定义了不同用途的数据
+ */
 
-inline void
-objc_object::initIsa(Class cls, bool nonpointer, bool hasCxxDtor)
-{
-    ASSERT(!isTaggedPointer());
-    
-    if (!nonpointer) {
-        isa = isa_t((uintptr_t)cls);
-    } else {
-        ASSERT(!DisableNonpointerIsa);
-        ASSERT(!cls->instancesRequireRawIsa());
-        
-        isa_t newisa(0);
-        
-#if SUPPORT_INDEXED_ISA
-        ASSERT(cls->classArrayIndex() > 0);
-        newisa.bits = ISA_INDEX_MAGIC_VALUE;
-        // isa.magic is part of ISA_MAGIC_VALUE
-        // isa.nonpointer is part of ISA_MAGIC_VALUE
-        newisa.has_cxx_dtor = hasCxxDtor;
-        newisa.indexcls = (uintptr_t)cls->classArrayIndex();
-#else
-        newisa.bits = ISA_MAGIC_VALUE;
-        // isa.magic is part of ISA_MAGIC_VALUE
-        // isa.nonpointer is part of ISA_MAGIC_VALUE
-        newisa.has_cxx_dtor = hasCxxDtor;
-        newisa.shiftcls = (uintptr_t)cls >> 3;
-#endif
-        
-        // This write must be performed in a single store in some cases
-        // (for example when realizing a class because other threads
-        // may simultaneously try to use the class).
-        // fixme use atomics here to guarantee single-store and to
-        // guarantee memory order w.r.t. the class index table
-        // ...but not too atomic because we don't want to hurt instantiation
-        isa = newisa;
-    }
-}
-
-#parm mark
 
 
 

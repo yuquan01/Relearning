@@ -26,10 +26,16 @@
 		3E333C1524C87FA100A0DBCF /* NSObject_1_底层结构.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "NSObject_1_底层结构.c"; sourceTree = "<group>"; };
 		3E333C1624C946C900A0DBCF /* NSObject_2_ISA指针.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "NSObject_2_ISA指针.c"; sourceTree = "<group>"; };
 		3E333C1724C9470600A0DBCF /* NSObject_细节.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "NSObject_细节.c"; sourceTree = "<group>"; };
-		3E333C1924C9BF6E00A0DBCF /* NSObject_2_实例化流程.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "NSObject_2_实例化流程.c"; sourceTree = "<group>"; };
+		3E333C1B24CACE3400A0DBCF /* NSObject_3_NSObject的创建过程.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "NSObject_3_NSObject的创建过程.c"; sourceTree = "<group>"; };
+		3E333C1C24CAEAD700A0DBCF /* NSObject_4_ISA的创建过程.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "NSObject_4_ISA的创建过程.c"; sourceTree = "<group>"; };
+		3E333C1D24CAF0AE00A0DBCF /* NSObject_5_对象的类型.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "NSObject_5_对象的类型.c"; sourceTree = "<group>"; };
+		3E333C1E24CB289000A0DBCF /* NSObject_6_SuperClass.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = NSObject_6_SuperClass.c; sourceTree = "<group>"; };
 		3E97DEA424C8426E00E369B1 /* CommandLine */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CommandLine; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E97DEA724C8426E00E369B1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3E97DED024C847AF00E369B1 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		3E9AAFAA24CB2DCA0082E391 /* NSObject_7_ISA与SuperClass的作用.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "NSObject_7_ISA与SuperClass的作用.c"; sourceTree = "<group>"; };
+		3E9AAFAB24CB2E360082E391 /* NSObject_7_ISA与SuperClass的作用.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "NSObject_7_ISA与SuperClass的作用.jpg"; sourceTree = "<group>"; };
+		3E9AAFAC24CB2EBC0082E391 /* NSObject_8_总结.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "NSObject_8_总结.c"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +72,13 @@
 				3E333C1724C9470600A0DBCF /* NSObject_细节.c */,
 				3E333C1524C87FA100A0DBCF /* NSObject_1_底层结构.c */,
 				3E333C1624C946C900A0DBCF /* NSObject_2_ISA指针.c */,
-				3E333C1924C9BF6E00A0DBCF /* NSObject_2_实例化流程.c */,
+				3E333C1B24CACE3400A0DBCF /* NSObject_3_NSObject的创建过程.c */,
+				3E333C1C24CAEAD700A0DBCF /* NSObject_4_ISA的创建过程.c */,
+				3E333C1D24CAF0AE00A0DBCF /* NSObject_5_对象的类型.c */,
+				3E333C1E24CB289000A0DBCF /* NSObject_6_SuperClass.c */,
+				3E9AAFAA24CB2DCA0082E391 /* NSObject_7_ISA与SuperClass的作用.c */,
+				3E9AAFAB24CB2E360082E391 /* NSObject_7_ISA与SuperClass的作用.jpg */,
+				3E9AAFAC24CB2EBC0082E391 /* NSObject_8_总结.c */,
 				3E97DEA724C8426E00E369B1 /* main.m */,
 			);
 			path = CommandLine;
