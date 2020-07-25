@@ -1,4 +1,4 @@
-#pragma mark  ------------------------认识
+#pragma mark  ------------------------创建的入口
 //创建NSObject对象的时候,在_class_createInstanceFromZone方法中,会对分配好空间之后的obj进行isa创建操作,如下代码所示
 if (!zone && fast) {
     obj->initInstanceIsa(cls, hasCxxDtor);
@@ -52,11 +52,11 @@ objc_object::initIsa(Class cls, bool nonpointer, bool hasCxxDtor)
         isa = newisa;
     }
 }
+//从上面的方法可以看出,这里主要是做了cls的绑定,即当前实例对象的cls/isa->shiftcls值为类对象的Class,也就是实例对象的isa指针指向类对象
 
 
 #pragma mark  ------------------------总结
 /*
  1、在创建NSObject对象的时候,会进行一次isa的创建
- 2、isa的创建相对简单,大部分的值都是一些初始值,只对是否存在析构器、以及(元)类地址进行了赋值处理
- 3、从整个流程可以看出,一个实例对象的isa指针,其值是类对象的地址
+ 2、isa的创建相对简单,主要内容就是对cls/isa->shiftcls进行绑定,其值指向该对象类型,即实例对象的cls/isa->shiftcls值为类对象的Class,也就是实例对象的isa指针指向类对象
  */

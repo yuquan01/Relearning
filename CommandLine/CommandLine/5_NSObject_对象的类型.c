@@ -1,10 +1,10 @@
 #pragma mark  ------------------------类的类型
 /*
-在OC中,类主要分为三类
-1、实例对象 : instance对象
-2、类对象 : class对象
-3、元类对象 : meta-class对象
-*/
+ 在OC中,类主要分为三类
+ 1、实例对象 : instance对象
+ 2、类对象 : class对象
+ 3、元类对象 : meta-class对象
+ */
 #pragma mark  ------------------------实例对象 : instance对象
 //创建方式如下,创建了两个实例对象,obj1、obj2,他们是两个不同的实例对象,有不同的内存空间
 NSObject *obj1 = [[NSObject alloc] init];
@@ -20,7 +20,7 @@ Class class4 = object_getClass(obj1);
 - (Class)class {
     return object_getClass(self);
 }
-//2、[NSObject class] : 该方法直接返回了自身
+//2、[NSObject class] : 该方法直接返回了自身,因此可以看出,无论调用多少次,其返回值是一致的
 + (Class)class {
     return self;
 }
@@ -100,15 +100,15 @@ Class objc_getClass(const char *aClassName)
 #pragma mark  ------------------------总结
 /*
  1、对象分为三种
-    a、实例对象 : instance对象
-    b、类对象 : class对象
-    c、元类对象 : meta-class对象
+ a、实例对象 : instance对象
+ b、类对象 : class对象
+ c、元类对象 : meta-class对象
  2、对象的获取
-    a、实例对象 : 通过alloc、new等形式创建
-    b、类对象 : 有多种方法,但其底层都是返回一个实例对象的isa指针,或者是返回类对象本身的isa指针
-    c、元类对象: 底层是返回一个类对象的isa指针
+ a、实例对象 : 通过alloc、new等形式创建
+ b、类对象 : 有多种方法,但其底层都是返回一个实例对象的isa指针,或者是返回类对象本身的isa指针
+ c、元类对象: 底层是返回一个类对象的isa指针
  3、从上面可以得出结论 :
-    实例对象的isa指针指向类对象,类对象的isa指针指向元类对象,元类对象的isa指针指向跟元类对象,跟元类对象的isa指针指向自身,从而形成一个闭环
+ 实例对象的isa指针指向类对象,类对象的isa指针指向元类对象,元类对象的isa指针指向跟元类对象,跟元类对象的isa指针指向自身,从而形成一个闭环
  */
 
 

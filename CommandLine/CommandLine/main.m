@@ -10,34 +10,34 @@
 #import <objc/runtime.h>
 
 #pragma mark -----
-@interface YQ_Object : NSObject
-//{
-//    int age;
-//    NSString *name;
-//    NSMutableString *info;
-//}
-//    @property (nonatomic,assign) int weight;
-//    @property (nonatomic,copy) NSString *nickName;
-//    @property (nonatomic,strong) NSMutableString *addr;
+@interface SuperObject : NSObject
 @end
-@implementation YQ_Object
+@implementation SuperObject
+@end
 
-
-
+@interface SubObject : SuperObject
+@end
+@implementation SubObject
 @end
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
+        //NSObject
+        //SuperObject : NSObject
+        //SubObject : SuperObject
         
-        NSObject *obj1 = [YQ_Object alloc];
-        NSObject *obj2 = [[YQ_Object alloc] init];
-        Class class1 = [obj1 class];
-        Class class2 = [YQ_Object class];
-        Class class3 = NSClassFromString(@"YQ_Object");
-        Class class4 = object_getClass(obj1);
+        NSObject *obj = [[NSObject alloc] init];
+        SuperObject *superObj = [[SuperObject alloc] init];
+        SubObject *subObj = [[SubObject alloc] init];
         
-        Class metaClass1 = object_getClass([YQ_Object class]);
-        Class metaClass2 = objc_getMetaClass("YQ_Object");
+        BOOL a = [superObj isKindOfClass:[NSObject class]];
+        
+        BOOL b = [subObj isKindOfClass:[NSObject class]];
+        
+        
+        BOOL c = [superObj isMemberOfClass:[NSObject class]];
+        BOOL d = [subObj isMemberOfClass:[NSObject class]];
+        
         
 //        NSObject *obj1 = [obj init];
     }

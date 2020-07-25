@@ -1,4 +1,4 @@
-#pragma mark  ------------------------isa
+#pragma mark  ------------------------objc_object
 //在objc_object结构体中可以看到,其内部有一个isa_t类型的isa成员变量
 
 #pragma mark  ------------------------isa的底层实现
@@ -21,7 +21,7 @@ union isa_t {
 };
 #pragma mark  ------------------------isa->cls
 
-//从其类型不难得出,当isa_t值为cls时,表示isa是一个objc_class的指针
+//从其类型不难得出,当isa_t值为cls时,表示isa是一个objc_class的指针,也就是指向一个对象
 
 #pragma mark  ------------------------isa->bits
 //其类型为unsigned long,长度为8个字节,即64位,而表示一个地址不需要用到这么大的空间,为了充分使用这块内存空间,使用了位域的形式来存储数据
@@ -63,16 +63,16 @@ uintptr_t extra_rc          : 19
  
  uintptr_t shiftcls          : 33;
  表示类地址,其值实际上是 isa & ISA_MASK 得到的值
-
+ 
  uintptr_t magic             : 6;
  用于判断当前对象是否时真的对象,还是没有初始化的内容空间
  
  uintptr_t weakly_referenced : 1;
  用于判断是否被指向或者曾经被指向一个弱引用变量,如果没有指向,则释放更快速
-
+ 
  uintptr_t deallocating      : 1;
  表示当前对象是否正在释放
-
+ 
  uintptr_t has_sidetable_rc  : 1;
  判断当前对象引用计数是否有进位,
  0 : 不实用side_table存储引用计数
@@ -109,7 +109,3 @@ uintptr_t extra_rc          : 19
  4、cls是class类型,指向一个objc_class类型数据,即指向一个对象
  5、bits使用位域存储数据,在不同的空间内定义了不同用途的数据
  */
-
-
-
-

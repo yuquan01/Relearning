@@ -13,9 +13,6 @@ id _objc_rootAlloc(Class cls)
     return callAlloc(cls, false/*checkNil*/, true/*allocWithZone*/);
 }
 
-//补充 : 这里可以看出,其返回值是一个id类型的数据,而id类型实际上就是一个objc_object类型的指针,因此,只要包含isa的对象,都可以认为是id类型.这也是id类型可以指向所有对象的原因
-typedef struct objc_object *id;
-
 //callAlloc()方法如下
 static ALWAYS_INLINE id callAlloc(Class cls, bool checkNil, bool allocWithZone=false)
 {
@@ -154,7 +151,7 @@ size_t instanceSize(size_t extraBytes) const {
     size_t size = alignedInstanceSize() + extraBytes;
     // CF requires all objects be at least 16 bytes.
     if (size < 16) size = 16;
-    return size;
+        return size;
 }
 //内存对齐处理,从下面的方法可以得知,字节对齐后其值总是为8的倍数
 uint32_t alignedInstanceSize() const {
@@ -168,14 +165,14 @@ define WORD_MASK 7UL
 #pragma mark  ------------------------总结
 /*
  1、在OC中,调用+alloc方法之后,底层会进行一系列的方法调用,主要路径为
-    a、_objc_rootAlloc()
-    b、callAlloc()
-    c、_class_createInstanceFromZone
+ a、_objc_rootAlloc()
+ b、callAlloc()
+ c、_class_createInstanceFromZone
  2、在_class_createInstanceFromZone方法中,主要的流程是
-    a、计算对象大小,这里会有内对对齐处理
-    b、分配空间,按指定的空间,或者由系统进行分配
-    c、构建isa,对每个对象构建isa成员值
-    d、返回对象
+ a、计算对象大小,这里会有内对对齐处理
+ b、分配空间,按指定的空间,或者由系统进行分配
+ c、构建isa,对每个对象构建isa成员值
+ d、返回对象
  3、对象的大小,在OC层面,分配的内存大小为最小16字节,不足补齐,在64位系统中,会在这个基础上进行8字节对齐,也就是大小总是8的倍数,而在最后的calloc方法中,会再次进行一次16字节内存对齐,也就是我们最终的对象大小总是16字节的倍数
  */
 
