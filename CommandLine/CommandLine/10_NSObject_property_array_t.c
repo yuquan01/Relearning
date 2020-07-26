@@ -1,9 +1,16 @@
+#pragma mark  ------------------------定义
+//property_array_t 的定义如下
 //
-//  11_NSObject_method_array_t1.c
-//  CommandLine
-//
-//  Created by 肖郡郁 on 2020/7/25.
-//  Copyright © 2020 x. All rights reserved.
-//
-
-#include <stdio.h>
+class property_array_t :
+public list_array_tt<property_t, property_list_t>
+{
+    typedef list_array_tt<property_t, property_list_t> Super;
+    
+public:
+    property_array_t() : Super() { }
+    property_array_t(property_list_t *l) : Super(l) { }
+    
+    property_array_t duplicate() {
+        return Super::duplicate<property_array_t>();
+    }
+};

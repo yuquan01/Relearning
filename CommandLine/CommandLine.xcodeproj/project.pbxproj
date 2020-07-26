@@ -39,6 +39,16 @@
 		3E9AAFBE24CC6F340082E391 /* 11_NSObject_method_array_t.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = 11_NSObject_method_array_t.c; sourceTree = "<group>"; };
 		3E9AAFBF24CC6F420082E391 /* 10_NSObject_property_array_t.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = 10_NSObject_property_array_t.c; sourceTree = "<group>"; };
 		3E9AAFC024CC6F500082E391 /* 12_NSObject_protocol_array_t.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = 12_NSObject_protocol_array_t.c; sourceTree = "<group>"; };
+		3E9AAFC124CC6FC80082E391 /* 13_NSObject_Class->bits整理.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = "13_NSObject_Class->bits整理.c"; sourceTree = "<group>"; };
+		3E9AAFC224CD26BB0082E391 /* 2_NSObject_对象的创建过程.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "2_NSObject_对象的创建过程.h"; sourceTree = "<group>"; };
+		3E9AAFC324CD28990082E391 /* 1_NSObject_结构解析.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "1_NSObject_结构解析.h"; sourceTree = "<group>"; };
+		3E9AAFC524CD36010082E391 /* 3_Runtime_objc_msgSend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = 3_Runtime_objc_msgSend.h; sourceTree = "<group>"; };
+		3E9AAFC624CD46140082E391 /* 3_Runtime_objc_getClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = 3_Runtime_objc_getClass.h; sourceTree = "<group>"; };
+		3E9AAFC824CD66BE0082E391 /* 1_NSObject_Class.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = 1_NSObject_Class.h; sourceTree = "<group>"; };
+		3E9AAFC924CD6EA50082E391 /* 2_NSObject_Class->isa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "2_NSObject_Class->isa.h"; sourceTree = "<group>"; };
+		3E9AAFCA24CD6ECE0082E391 /* 4_NSObject_Class->cache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "4_NSObject_Class->cache.h"; sourceTree = "<group>"; };
+		3E9AAFCB24CD6F0F0082E391 /* 5_NSObject_Class->bits.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "5_NSObject_Class->bits.h"; sourceTree = "<group>"; };
+		3E9AAFCC24CD6FC40082E391 /* 3_NSObject_Class->superclass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "3_NSObject_Class->superclass.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +65,7 @@
 		3E97DE9B24C8426E00E369B1 = {
 			isa = PBXGroup;
 			children = (
+				3E9AAFC724CD4BCA0082E391 /* NSObject */,
 				3E97DEA624C8426E00E369B1 /* CommandLine */,
 				3E97DEA524C8426E00E369B1 /* Products */,
 			);
@@ -71,7 +82,16 @@
 		3E97DEA624C8426E00E369B1 /* CommandLine */ = {
 			isa = PBXGroup;
 			children = (
+				3E9AAFC824CD66BE0082E391 /* 1_NSObject_Class.h */,
+				3E9AAFC924CD6EA50082E391 /* 2_NSObject_Class->isa.h */,
+				3E9AAFCC24CD6FC40082E391 /* 3_NSObject_Class->superclass.h */,
+				3E9AAFCA24CD6ECE0082E391 /* 4_NSObject_Class->cache.h */,
+				3E9AAFCB24CD6F0F0082E391 /* 5_NSObject_Class->bits.h */,
 				3E97DED024C847AF00E369B1 /* main.cpp */,
+				3E9AAFC324CD28990082E391 /* 1_NSObject_结构解析.h */,
+				3E9AAFC224CD26BB0082E391 /* 2_NSObject_对象的创建过程.h */,
+				3E9AAFC624CD46140082E391 /* 3_Runtime_objc_getClass.h */,
+				3E9AAFC524CD36010082E391 /* 3_Runtime_objc_msgSend.h */,
 				3E9AAFAD24CC4F050082E391 /* 1_NSobject_底层结构.c */,
 				3E9AAFAF24CC5BCB0082E391 /* 2_NSObject_ISA.c */,
 				3E9AAFB024CC5C3F0082E391 /* 3_NSObject_对象的创建过程.c */,
@@ -85,9 +105,17 @@
 				3E9AAFBF24CC6F420082E391 /* 10_NSObject_property_array_t.c */,
 				3E9AAFBE24CC6F340082E391 /* 11_NSObject_method_array_t.c */,
 				3E9AAFC024CC6F500082E391 /* 12_NSObject_protocol_array_t.c */,
+				3E9AAFC124CC6FC80082E391 /* 13_NSObject_Class->bits整理.c */,
 				3E97DEA724C8426E00E369B1 /* main.m */,
 			);
 			path = CommandLine;
+			sourceTree = "<group>";
+		};
+		3E9AAFC724CD4BCA0082E391 /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NSObject;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -26,17 +26,17 @@ int main(int argc, const char * argv[]) {
         //SuperObject : NSObject
         //SubObject : SuperObject
         
-        NSObject *obj = [[NSObject alloc] init];
-        SuperObject *superObj = [[SuperObject alloc] init];
-        SubObject *subObj = [[SubObject alloc] init];
-        
-        BOOL a = [superObj isKindOfClass:[NSObject class]];
-        
-        BOOL b = [subObj isKindOfClass:[NSObject class]];
-        
-        
-        BOOL c = [superObj isMemberOfClass:[NSObject class]];
-        BOOL d = [subObj isMemberOfClass:[NSObject class]];
+        NSObject *obj = [NSObject alloc];
+//        SuperObject *superObj = [[SuperObject alloc] init];
+//        SubObject *subObj = [[SubObject alloc] init];
+//
+//        BOOL a = [superObj isKindOfClass:[NSObject class]];
+//
+//        BOOL b = [subObj isKindOfClass:[NSObject class]];
+//
+//
+//        BOOL c = [superObj isMemberOfClass:[NSObject class]];
+//        BOOL d = [subObj isMemberOfClass:[NSObject class]];
         
         
 //        NSObject *obj1 = [obj init];
