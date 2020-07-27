@@ -1,10 +1,10 @@
 #pragma mark  ------------------------初识
-//在objc_class结构体中,有一个成员是cache,类型是cache_t
+//在objc_class结构体中,有一个成员是cache,类型是cache_t，
 struct objc_class : objc_object {
     // Class ISA;
     Class superclass;
     cache_t cache;
-    class_data_bits_t bits;
+    class_data_bits_t bits; 
 }
 
 #pragma mark  ------------------------cache
